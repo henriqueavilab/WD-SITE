@@ -76,7 +76,3 @@ Como este é um projeto puramente front-end, não é necessário um servidor ou 
     * Ele será aberto diretamente no seu navegador padrão (Google Chrome, Firefox, etc.).
 
 E pronto! O sistema estará funcionando. Você pode criar um novo usuário e começar a testar todas as funcionalidades.
-
----
-
-## 📁 Estrutura dos Arquivos
