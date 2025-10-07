@@ -5,8 +5,6 @@
 
 Este é um projeto desenvolvido para a disciplina de Web Design. Trata-se de uma aplicação web completa (front-end) para prospecção e gerenciamento de leads, chamada "Vuelo". O sistema permite que um usuário se cadastre, faça login e gerencie uma lista de estabelecimentos (leads), acompanhando o status e as etapas de contato de cada um.
 
-![Screenshot do Sistema Vuelo](https://imgur.com/a/ETGzyLY#iICUnTx)
-
 ---
 
 ## ✨ Principais Funcionalidades
