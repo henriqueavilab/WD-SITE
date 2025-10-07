@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospecção Vuelo - Sistema de Leads</title>
+    <!-- Links Externos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Folha de Estilo Local -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Biblioteca de Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Seção de Login (visível no início) -->
+    <div id="loginSection" class="login-wrapper">
+        <div class="login-card">
+            <div class="logo-vuelo"><span class="v-amarelo">V</span><span class="resto-roxo">uelo</span></div>
+            
+            <!-- Abas Login/Cadastro -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="login">Login</button>
+                <button class="tab-button" data-tab="cadastro">Cadastrar</button>
+            </div>
+
+            <!-- Formulário de Login -->
+            <div id="loginTab" class="tab-content active">
+                <h2>Acesse a Plataforma</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Entrar</button>
+                    <p id="errorMessage"></p>
+                </form>
+            </div>
+
+            <!-- Formulário de Cadastro -->
+            <div id="cadastroTab" class="tab-content">
+                <h2>Criar Nova Conta</h2>
+                <form id="cadastroForm">
+                    <div class="input-group">
+                        <label for="newUsername">Novo Usuário</label>
+                        <input type="text" id="newUsername" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="newPassword">Nova Senha</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                        <input type="password" id="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="login-btn">Cadastrar</button>
+                    <p id="cadastroMessage"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção da Plataforma (invisível no início) -->
+    <div id="appSection" class="container" style="display: none;">
+        <header>
+            <div class="logo">
+                <div class="logo-vuelo"><span class="v-amarelo">V</span><span class="resto-roxo">uelo</span></div>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar estabelecimento...">
+                <button id="searchBtn"><i class="fas fa-search"></i> Buscar</button>
+            </div>
+        </header>
+    
+        <div class="stats">
+            <div class="stat-card"><h3>Total de Leads</h3><div class="number" id="total-count">0</div></div>
+            <div class="stat-card"><h3>Leads Frios</h3><div class="number" id="frios-count">0</div></div>
+            <div class="stat-card"><h3>Leads Mornos</h3><div class="number" id="mornos-count">0</div></div>
+            <div class="stat-card"><h3>Leads Quentes</h3><div class="number" id="quentes-count">0</div></div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="filters">
+                <h2>Filtros</h2>
+                <div class="filter-group">
+                    <label for="typeFilter">Tipo de Estabelecimento</label>
+                    <select id="typeFilter">
+                        <option value="all">Todos</option>
+                        <option value="Açougue">Açougues</option>
+                        <option value="Joalheria">Joalherias</option>
+                        <option value="Restaurante">Restaurantes</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="neighborhoodFilter">Bairro</label>
+                    <select id="neighborhoodFilter">
+                        <option value="all">Todos</option>
+                        <option value="Centro">Centro</option>
+                        <option value="Vila Garcia">Vila Garcia</option>
+                        <option value="Vila Lopez">Vila Lopez</option>
+                        <option value="Jardim Bela Vista">Jardim Bela Vista</option>
+                         <!-- ... outros bairros ... -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">Status do Lead</label>
+                    <select id="statusFilter">
+                        <option value="all">Todos</option>
+                        <option value="frio">Frio</option>
+                        <option value="morno">Morno</option>
+                        <option value="quente">Quente</option>
+                        <option value="sem-status">Sem Status</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="etapaFilter">Filtrar por Etapa</label>
+                    <select id="etapaFilter">
+                        <option value="all">Todas as Etapas</option>
+                        <option value="etapa1">1º Contato</option>
+                        <option value="etapa2">2º Contato</option>
+                        <option value="etapa3">3º Contato</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">Ordenar por</label>
+                    <select id="sortBy">
+                        <option value="name">Nome (A-Z)</option>
+                        <option value="type">Tipo</option>
+                        <option value="neighborhood">Bairro</option>
+                        <option value="status">Status</option>
+                    </select>
+                </div>
+                <button class="action-btn" style="width: 100%; margin-top: 10px;" id="applyFilters">Aplicar Filtros</button>
+                <button class="action-btn" style="width: 100%; margin-top: 10px; background: #555;" id="resetFilters">Limpar Filtros</button>
+            </div>
+            
+            <div class="charts">
+                <div class="chart-container"><h2>Distribuição por Tipo</h2><canvas id="typeChart"></canvas></div>
+                <div class="chart-container"><h2>Status dos Leads</h2><canvas id="statusChart"></canvas></div>
+            </div>
+        </div>
+        
+        <div class="establishments-list">
+            <h2>Lista de Leads</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">Contatos</th>
+                        <th>Nome</th>
+                        <th style="width: 100px;">Status</th>
+                        <th style="width: 120px;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="establishmentsTable"></tbody>
+            </table>
+        </div>
+        
+        <div class="modal" id="detailsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Detalhes do Lead</h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Vuelo Analytics - Sistema de Prospecção - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <!-- Script Local -->
+    <script src="script.js"></script>
+</body>
+</html>
