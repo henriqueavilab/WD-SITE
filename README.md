@@ -5,8 +5,7 @@
 
 Este é um projeto desenvolvido para a disciplina de Web Design. Trata-se de uma aplicação web completa (front-end) para prospecção e gerenciamento de leads, chamada "Vuelo". O sistema permite que um usuário se cadastre, faça login e gerencie uma lista de estabelecimentos (leads), acompanhando o status e as etapas de contato de cada um.
 
-*(Dica: Tire um print da tela do seu sistema e coloque aqui para deixar o README mais visual!)*
-![Screenshot do Sistema Vuelo](https://i.imgur.com/8QfCjU1.png)
+![Screenshot do Sistema Vuelo](https://imgur.com/a/ETGzyLY)
 
 ---
 
@@ -65,7 +64,7 @@ Como este é um projeto puramente front-end, não é necessário um servidor ou 
 
 1.  **Clone ou baixe este repositório:**
     ```bash
-    git clone https://[URL-DO-SEU-REPOSITORIO].git
+    git clone https://github.com/henriqueavilab/WD-SITE
     ```
     Ou simplesmente baixe os arquivos `.zip`.
 
